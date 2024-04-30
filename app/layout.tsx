@@ -20,3 +20,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+//'envolta' de toda aplicação
