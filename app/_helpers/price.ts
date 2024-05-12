@@ -15,7 +15,7 @@ return Number (product.price) - discount;
 }
 
 export const formatCurrency = (value: number): string => {
-    return `R${Intl.NumberFormat("pt-BR", {
+    return `${Intl.NumberFormat("pt-BR", {
         style: "currency",
         currency: "BRL",
     }).format(value)}`;
