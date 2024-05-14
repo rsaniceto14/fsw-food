@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 
 interface RestaurantItemProps {
   restaurant: Restaurant;
+  className?: string;
 }
 
 const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
