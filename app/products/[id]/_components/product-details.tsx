@@ -4,16 +4,11 @@ import { Prisma } from "@prisma/client";
 import Image from "next/image";
 import { calculateTotalPrice, formatCurrency } from "@/app/_helpers/price";
 import DiscountBadge from "@/app/_components/discount-badge";
-import {
-  BikeIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ClockIcon,
-} from "lucide-react";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { Button } from "@/app/_components/ui/button";
 import { useState } from "react";
-import { Card } from "@/app/_components/ui/card";
 import ProductList from "@/app/_components/products-list";
+import DeliveryInfo from "@/app/_components/delivery-info";
 
 interface ProductDetailsProps {
   product: Prisma.ProductGetPayload<{
@@ -99,40 +94,7 @@ const ProductDetails = ({
       </div>
 
       <div className="px-5">
-        <Card className="mt-6 flex justify-around py-3">
-          {/* Dados entrega */}
-          <div className="flex flex-col items-center">
-            <div className="flex items-center gap-1 text-muted-foreground">
-              <span className="text-xs">Entrega</span>
-              <BikeIcon size={14} />
-            </div>
-
-            {Number(product.restaurant.deliveryFee) > 0 ? (
-              <p className="text-sm font-semibold ">
-                {formatCurrency(Number(product.restaurant.deliveryFee))}
-              </p>
-            ) : (
-              <p className="text-sm font-semibold ">Grátis</p>
-            )}
-          </div>
-
-          {/* Tempo */}
-
-          <div className="flex flex-col items-center">
-            <div className="flex items-center gap-1 text-muted-foreground ">
-              <span className="text-xs">Entrega</span>
-              <ClockIcon size={14} />
-            </div>
-
-            {Number(product.restaurant.deliveryFee) > 0 ? (
-              <p className="text-sm font-semibold ">
-                {formatCurrency(Number(product.restaurant.deliveryFee))}
-              </p>
-            ) : (
-              <p className="text-sm font-semibold ">Grátis</p>
-            )}
-          </div>
-        </Card>
+        <DeliveryInfo restaurant={product.restaurant} />
       </div>
       <div className="px-5">
         <div className="mt-6 space-y-3">
@@ -148,6 +110,12 @@ const ProductDetails = ({
           <div className="mt-6 space-y-3">
             <h3 className="font-semibold">Sucos</h3>
             <ProductList products={recommendedProducts} />
+          </div>
+
+          <div className="px-5">
+            <Button className="mt-6 w-full font-semibold">
+              Adicionar à sacola
+            </Button>
           </div>
         </div>
       </div>
